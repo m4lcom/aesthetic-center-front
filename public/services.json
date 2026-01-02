@@ -1,0 +1,11 @@
+[
+  { "id": 1, "name": "Limpieza facial", "price": 2500, "duration": "45 min" },
+  { "id": 2, "name": "Masaje relajante", "price": 4000, "duration": "60 min" },
+  { "id": 3, "name": "Manicura completa", "price": 3000, "duration": "40 min" },
+  {
+    "id": 4,
+    "name": "Tratamientos faciales",
+    "price": 5000,
+    "duration": "40min"
+  }
+]
