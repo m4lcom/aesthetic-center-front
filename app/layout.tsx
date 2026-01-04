@@ -6,37 +6,37 @@ import Footer from "@/src/components/Footer";
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap", // Mejora el Performance (evita el "flicker" de fuentes)
 });
 
 export const metadata = {
-  title: "Beauty Center | Estética Avanzada en Rosario",
+  metadataBase: new URL("https://aesthetic-center-front.vercel.app"),
+  title: {
+    default: "Beauty Center | Estética Avanzada en Rosario",
+    template: "%s | Beauty Center Rosario", // Esto hace que tus subpáginas se vean pro en Google
+  },
   description:
     "Especialistas en armonización facial, depilación láser y modelado corporal en el centro de Rosario. Agendá tu consulta de evaluación hoy.",
   keywords: [
     "estética rosario",
     "depilación láser rosario",
-    "plasma rico en plaquetas rosario",
-    "limpieza facial",
-    "peelings rosario",
-    "microdermoabrasión",
-    "tratamientos corporales rosario",
-    "modelado corporal",
-    "rejuvenecimiento facial",
-    "rellenos dérmicos",
-    "hilos tensores rosario",
-    "consultas estéticas rosario",
-    "centro de estética avanzada",
-    "belleza y bienestar rosario",
-    "tratamientos personalizados rosario",
+    "tratamientos faciales rosario",
+    "Beauty Center Rosario",
   ],
   authors: [{ name: "Malcom" }],
-  metadataBase: new URL("https://aesthetic-center-front.vercel.app"),
   alternates: {
-    canonical: "/",
+    canonical: "./", // Usar ruta relativa ayuda a evitar problemas de trailing slashes
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -46,10 +46,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={montserrat.variable}>
-      <body className="flex min-h-screen flex-col font-sans antialiased">
+    // Aseguramos que el lang esté siempre presente (Vital para Accesibilidad)
+    <html lang="es" className={`${montserrat.variable} scroll-smooth`}>
+      <body className="flex min-h-screen flex-col font-sans antialiased text-neutral-900 bg-white">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        {/* Usar etiquetas semánticas ayuda a los lectores de pantalla */}
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
