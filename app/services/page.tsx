@@ -147,9 +147,11 @@ export default function ServicesPage() {
                     <div className="relative aspect-[4/3] overflow-hidden rounded-[2.5rem] shadow-2xl">
                       <Image
                         src={service.image}
-                        alt={service.title}
+                        alt={`Tratamiento de ${service.title} en Rosario - BeautyCenter`}
                         fill
                         className="object-cover"
+                        priority={index === 0}
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </div>
                   </div>
@@ -206,7 +208,7 @@ export default function ServicesPage() {
             <div className="pt-6">
               <Link
                 href="/contact"
-                className="inline-block bg-rose-500 text-white px-14 py-5 rounded-full font-bold uppercase tracking-widest hover:bg-rose-600 hover:-translate-y-1 transition-all shadow-xl shadow-rose-900/40"
+                className="inline-block bg-rose-400 text-white px-14 py-5 rounded-full font-bold uppercase tracking-widest hover:bg-rose-600 hover:-translate-y-1 transition-all shadow-xl shadow-rose-900/40"
               >
                 Solicitar Diagnóstico
               </Link>

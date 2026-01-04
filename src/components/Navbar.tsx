@@ -82,6 +82,7 @@ export default function Navbar() {
               variant="primary"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="WhatsApp button"
               className={`rounded-full px-8 py-2.5 text-[11px] tracking-widest uppercase shadow-lg transition-all duration-500 ${
                 isTransparent
                   ? "bg-white !text-neutral-900 hover:bg-rose-50 shadow-none"
@@ -93,7 +94,11 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button className="md:hidden p-2 z-50" onClick={() => setOpen(!open)}>
+          <button
+            className="md:hidden p-2 z-50"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle Menu"
+          >
             {open ? (
               <XMarkIcon className="h-8 w-8 text-neutral-900" />
             ) : (

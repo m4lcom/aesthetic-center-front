@@ -76,7 +76,8 @@ export default function TreatmentsSection() {
                   alt={treatment.title}
                   fill
                   className="object-cover transition-all duration-1000 ease-out group-hover:scale-110 group-hover:blur-[2px]"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  priority={index === 0}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
               </div>
