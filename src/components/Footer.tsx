@@ -58,9 +58,9 @@ export default function Footer() {
 
           {/* 2. Navegación CORREGIDA */}
           <div>
-            <h4 className="font-bold text-white uppercase text-xs tracking-[0.2em] mb-8">
+            <h2 className="font-bold text-white uppercase text-xs tracking-[0.2em] mb-8">
               Explorar
-            </h4>
+            </h2>
             <ul className="space-y-4">
               {navigation.map((item) => (
                 <li key={item.name}>
@@ -77,9 +77,9 @@ export default function Footer() {
 
           {/* 3. Horarios */}
           <div>
-            <h4 className="font-bold text-white uppercase text-xs tracking-[0.2em] mb-8">
+            <h2 className="font-bold text-white uppercase text-xs tracking-[0.2em] mb-8">
               Atención
-            </h4>
+            </h2>
             <ul className="space-y-4 text-sm font-light">
               <li className="flex flex-col">
                 <span className="text-neutral-500 text-[11px] uppercase tracking-tighter">
@@ -101,9 +101,9 @@ export default function Footer() {
 
           {/* 4. Newsletter */}
           <div className="space-y-6">
-            <h4 className="font-bold text-white uppercase text-xs tracking-[0.2em] mb-8">
+            <h2 className="font-bold text-white uppercase text-xs tracking-[0.2em] mb-8">
               Novedades
-            </h4>
+            </h2>
             <form
               className="flex flex-col gap-3"
               onSubmit={(e) => e.preventDefault()}
