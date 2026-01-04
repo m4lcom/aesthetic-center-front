@@ -82,18 +82,21 @@ export default function Footer() {
             </h2>
             <ul className="space-y-4 text-sm font-light">
               <li className="flex flex-col">
-                <span className="text-neutral-500 text-[11px] uppercase tracking-tighter">
+                {/* Subimos de neutral-500 a neutral-300 para contraste sobre fondo oscuro */}
+                <span className="text-neutral-300 text-[11px] uppercase tracking-tighter font-medium">
                   Lunes a Viernes
                 </span>
-                <span className="text-neutral-300">09:00 — 20:00 hs</span>
+                <span className="text-white">09:00 — 20:00 hs</span>
               </li>
               <li className="flex flex-col">
-                <span className="text-neutral-500 text-[11px] uppercase tracking-tighter">
+                {/* Subimos de neutral-500 a neutral-300 */}
+                <span className="text-neutral-300 text-[11px] uppercase tracking-tighter font-medium">
                   Sábados
                 </span>
-                <span className="text-neutral-300">09:00 — 13:00 hs</span>
+                <span className="text-white">09:00 — 13:00 hs</span>
               </li>
-              <li className="text-neutral-600 italic pt-2">
+              {/* Subimos de neutral-600 a neutral-400 para que sea legible */}
+              <li className="text-neutral-400 italic pt-2">
                 Domingos y Feriados: Cerrado
               </li>
             </ul>
