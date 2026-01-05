@@ -10,33 +10,38 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://aesthetic-center-front.vercel.app"),
   title: {
     default: "Beauty Center | Estética Avanzada en Rosario",
-    template: "%s | Beauty Center Rosario", // Esto hace que tus subpáginas se vean pro en Google
+    template: "%s | Beauty Center",
   },
   description:
-    "Especialistas en armonización facial, depilación láser y modelado corporal en el centro de Rosario. Agendá tu consulta de evaluación hoy.",
+    "Especialistas en armonización facial, depilación láser soprano y tratamientos corporales en Rosario.",
   keywords: [
-    "estética rosario",
-    "depilación láser rosario",
-    "tratamientos faciales rosario",
-    "Beauty Center Rosario",
+    "Estética Rosario",
+    "Depilación Láser",
+    "Armonización Facial",
+    "Medicina Estética",
+    "Tratamientos Corporales",
+    "Beauty Center",
+    "Plasma Rico en Plaquetas",
+    "Limpieza Facial",
+    "Modelado Corporal",
+    "Peeling",
   ],
-  authors: [{ name: "Malcom" }],
-  alternates: {
-    canonical: "./", // Usar ruta relativa ayuda a evitar problemas de trailing slashes
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+  openGraph: {
+    title: "Beauty Center Rosario",
+    description: "Resaltamos tu belleza natural con tecnología de vanguardia.",
+    url: "https://aesthetic-center-front.vercel.app/",
+    siteName: "Beauty Center",
+    images: [
+      {
+        url: "/og-image.jpg", // Deberías poner una imagen linda de 1200x630 en /public
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "es_AR",
+    type: "website",
   },
 };
 
