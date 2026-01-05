@@ -2,6 +2,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/src/components/Navbar";
 import Footer from "@/src/components/Footer";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
         {/* Usar etiquetas semánticas ayuda a los lectores de pantalla */}
         <main id="main-content" className="flex-1">
           {children}
+          <SpeedInsights />
         </main>
         <Footer />
       </body>
