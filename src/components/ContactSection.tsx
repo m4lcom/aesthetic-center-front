@@ -83,7 +83,7 @@ export default function ContactSection({
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-neutral-900">Ubicación</h4>
+                  <h2 className="font-bold text-neutral-900">Ubicación</h2>
                   <p className="text-neutral-500 font-light text-sm">
                     Bv. Oroño al 1000, Rosario
                   </p>
@@ -94,7 +94,7 @@ export default function ContactSection({
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-neutral-900">Teléfono</h4>
+                  <h2 className="font-bold text-neutral-900">Teléfono</h2>
                   <p className="text-neutral-500 font-light text-sm">
                     +54 341 252 4242
                   </p>
