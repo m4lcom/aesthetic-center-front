@@ -10,7 +10,7 @@ import Button from "@/src/components/Button"; // Importamos tu componente Button
 const playfair = Playfair_Display({ subsets: ["latin"], weight: "700" });
 
 // --- CONFIGURACIÓN DE CONTACTO ---
-const WHATSAPP_NUMBER = "5493412524242";
+const WHATSAPP_NUMBER = "5493413304892";
 const WHATSAPP_MSG = encodeURIComponent(
   "¡Hola! Me gustaría agendar una consulta de evaluación en Beauty Center Rosario."
 );
@@ -85,7 +85,7 @@ export default function ContactSection({
                 <div>
                   <h2 className="font-bold text-neutral-900">Ubicación</h2>
                   <p className="text-neutral-500 font-light text-sm">
-                    Bv. Oroño al 1000, Rosario
+                    Castellanos 1556, Rosario.
                   </p>
                 </div>
               </div>
@@ -96,7 +96,7 @@ export default function ContactSection({
                 <div>
                   <h2 className="font-bold text-neutral-900">Teléfono</h2>
                   <p className="text-neutral-500 font-light text-sm">
-                    +54 341 252 4242
+                    +54 341 330 4892
                   </p>
                 </div>
               </div>

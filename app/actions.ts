@@ -25,7 +25,7 @@ export async function sendEmail(formData: FormData) {
     // 4. Envío real a través de Resend
     const { data, error } = await resend.emails.send({
       from: "BeautyCenter <onboarding@resend.dev>", // Dominio de prueba de Resend
-      to: ["malcom.foca@gmail.com"], // <--- CAMBIÁ ESTO POR TU MAIL REAL
+      to: ["soniabeatrizmachado66@gmail.com"], // <--- CAMBIÁ ESTO POR TU MAIL REAL
       subject: `Nueva Consulta: ${service} - ${name}`,
       text: `
         Has recibido una nueva consulta desde la web:
