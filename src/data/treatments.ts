@@ -1,4 +1,5 @@
 export interface Treatment {
+  slug: string;
   title: string;
   description: string;
   fullContent: string;
@@ -9,6 +10,7 @@ export interface Treatment {
 
 export const TREATMENTS_DATA: Record<string, Treatment> = {
   faciales: {
+    slug: "faciales",
     title: "Estética Facial Avanzada",
     description:
       "Recuperá la frescura y juventud de tu rostro sin pasar por el quirófano.",
@@ -28,6 +30,7 @@ export const TREATMENTS_DATA: Record<string, Treatment> = {
     ],
   },
   "depilacion-laser": {
+    slug: "depilacion-laser",
     title: "Depilación Láser Definitiva",
     description:
       "Libertad y suavidad total en tu piel con tecnología de punta.",
@@ -43,6 +46,7 @@ export const TREATMENTS_DATA: Record<string, Treatment> = {
     ],
   },
   corporales: {
+    slug: "corporales",
     title: "Modelado y Armonía Corporal",
     description:
       "Esculpí tu figura y tratá la celulitis con protocolos personalizados.",
@@ -62,6 +66,7 @@ export const TREATMENTS_DATA: Record<string, Treatment> = {
     ],
   },
   capilares: {
+    slug: "capilares",
     title: "Salud y Recuperación Capilar",
     description:
       "Detené la caída y estimulá el crecimiento de un cabello sano y fuerte.",

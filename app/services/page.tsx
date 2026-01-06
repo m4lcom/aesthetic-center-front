@@ -11,39 +11,36 @@ const playfair = Playfair_Display({ subsets: ["latin"], weight: "700" });
 
 const allServices = [
   {
-    title: "Armonización Facial",
+    slug: "faciales",
+    title: "Estética Facial Avanzada",
     description:
-      "Un enfoque integral para resaltar tus rasgos naturales. Utilizamos activos de alta gama para recuperar volúmenes perdidos y mejorar la calidad de la piel.",
-    details: ["Nutrición Intensa", "Efecto Glow", "Bioestimulación Cosmética"],
-    image: "/images/tratamientos-faciales-edit.jpg",
+      "Recuperá la frescura y juventud de tu rostro con protocolos de bioestimulación y renovación celular profunda.",
+    details: ["Bioestimulación", "Efecto Glow", "Hilos Tensores"],
+    image: "/images/tratamientos-faciales.webp",
   },
   {
-    title: "Bioestimulación Capilar",
+    slug: "capilares",
+    title: "Salud y Recuperación Capilar",
     description:
-      "Contamos con la asistencia de un técnico en hemoterapia para la obtención del plasma, aplicado con técnica Dermapen para fortalecer tu cabello.",
-    details: ["Asistencia Profesional", "Técnica Dermapen", "Densidad Real"],
+      "Detené la caída y estimulá el crecimiento. Combinamos ciencia y nutrición folicular para resultados reales.",
+    details: ["Mesoterapia", "Terapia Exosomas", "Densidad Real"],
     image: "/images/tratamientos-capilares.jpg",
   },
   {
-    title: "Limpieza Profunda & Peeling",
+    slug: "depilacion-laser",
+    title: "Depilación Láser Definitiva",
     description:
-      "Protocolos de renovación celular mediante técnicas manuales y químicas suaves. Eliminamos impurezas respetando el equilibrio de tu piel.",
-    details: ["Peeling Cosmético", "Extracciones", "Alta Frecuencia"],
-    image: "/images/skin-care.jpg",
-  },
-  {
-    title: "Depilación Láser Soprano",
-    description:
-      "Tecnología Ice para una eliminación del vello eficaz y sin dolor, apta para todos los fototipos de piel durante todo el año.",
+      "Tecnología Soprano Titanium: el estándar de oro para una piel suave, sin vello y sin dolor todo el año.",
     details: ["Sistema Indoloro", "Todo el año", "Piel Suave"],
     image: "/images/tratamiento-laser-edit.jpg",
   },
   {
-    title: "Modelado Corporal",
+    slug: "corporales",
+    title: "Modelado y Armonía Corporal",
     description:
-      "Tecnologías combinadas para tratar celulitis, flacidez y adiposidad localizada, esculpiendo tu figura de forma no invasiva.",
-    details: ["Reducción", "Tonificación", "Drenaje"],
-    image: "/images/tratamientos-corporales-3-edit.png",
+      "Esculpí tu figura y mejorá la textura de tu piel con tecnologías de reducción y tonificación muscular.",
+    details: ["Reducción", "Tonificación", "Maderoterapia"],
+    image: "/images/tratamientos-corporales-3.png",
   },
 ];
 
@@ -68,7 +65,6 @@ export default function ServicesPage() {
             animate="visible"
             className="max-w-4xl"
           >
-            {/* rose-600 para contraste sobre blanco */}
             <motion.span
               variants={fadeInUp}
               className="text-rose-600 font-bold tracking-[0.3em] uppercase text-xs"
@@ -84,13 +80,12 @@ export default function ServicesPage() {
                 Avanzada.
               </span>
             </motion.h1>
-            {/* neutral-700 para contraste sobre blanco */}
             <motion.p
               variants={fadeInUp}
               className="mt-8 text-neutral-700 font-light text-lg sm:text-2xl max-w-2xl leading-relaxed"
             >
-              Protocolos personalizados que combinan ciencia y tecnología para
-              realzar tu belleza natural en Rosario.
+              En Rosario, transformamos tu cuidado personal en una experiencia
+              de bienestar y resultados visibles.
             </motion.p>
           </motion.div>
         </div>
@@ -99,18 +94,12 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <div className="h-[12vh] sm:h-[18vh] bg-white w-full" />
-
-      {/* 2. NAVEGACIÓN RÁPIDA (ÍNDICE) - Usamos neutral-700 */}
-      <nav
-        className="hidden lg:flex justify-center gap-10 py-6 border-b border-neutral-100 sticky top-20 bg-white/95 backdrop-blur-md z-40"
-        aria-label="Navegación rápida de servicios"
-      >
+      {/* 2. NAVEGACIÓN RÁPIDA */}
+      <nav className="hidden lg:flex justify-center gap-10 py-6 border-b border-neutral-100 sticky top-20 bg-white/95 backdrop-blur-md z-40">
         {allServices.map((service, i) => (
           <button
             key={`nav-${i}`}
             onClick={() => scrollToService(i)}
-            aria-label={`Desplazarse a ${service.title}`}
             className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-700 hover:text-rose-600 transition-colors"
           >
             {service.title}
@@ -118,7 +107,7 @@ export default function ServicesPage() {
         ))}
       </nav>
 
-      {/* 3. LISTADO DE SERVICIOS */}
+      {/* 3. LISTADO DE SERVICIOS CON HOVER EFFECTS */}
       <section className="relative z-10 pt-20 pb-40">
         <div className="mx-auto max-w-7xl px-6">
           <div className="space-y-32 sm:space-y-48">
@@ -134,20 +123,25 @@ export default function ServicesPage() {
                   index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
                 }`}
               >
-                <div className="w-full lg:w-1/2">
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-[2.5rem] shadow-2xl bg-neutral-100">
-                    <Image
-                      src={service.image}
-                      alt={`Tratamiento de ${service.title} - Beauty Center Rosario`}
-                      fill
-                      className="object-cover"
-                      priority={index === 0}
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
+                {/* Contenedor de Imagen con Efecto Hover */}
+                <div className="w-full lg:w-1/2 group">
+                  <Link href={`/services/${service.slug}`}>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-[2.5rem] shadow-2xl bg-neutral-100 cursor-pointer">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                        priority={index === 0}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      {/* Overlay sutil al hacer hover */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+                    </div>
+                  </Link>
                 </div>
+
                 <div className="w-full lg:w-1/2 space-y-8">
-                  {/* H2 para mantener orden jerárquico */}
                   <h2
                     className={`${playfair.className} text-4xl text-neutral-900`}
                   >
@@ -172,12 +166,11 @@ export default function ServicesPage() {
                   </ul>
                   <div className="pt-4">
                     <Button
-                      href="/contact"
+                      href={`/services/${service.slug}`}
                       variant="primary"
-                      aria-label={`Consultar sobre ${service.title}`}
-                      className="rounded-full px-10 bg-rose-600 text-white"
+                      className="rounded-full px-10 bg-rose-600 text-white shadow-xl shadow-rose-200 hover:shadow-rose-300 transition-all"
                     >
-                      Consultar Ahora
+                      Ver detalles
                     </Button>
                   </div>
                 </div>
@@ -189,21 +182,22 @@ export default function ServicesPage() {
 
       {/* 4. CTA FINAL */}
       <section className="mx-auto max-w-7xl px-6 pb-48">
-        <div className="bg-neutral-900 rounded-[3rem] py-24 px-8 text-center shadow-2xl relative overflow-hidden">
+        <div className="bg-neutral-900 rounded-[3rem] py-24 px-8 text-center shadow-2xl relative overflow-hidden group">
+          <div className="absolute inset-0 bg-rose-600/5 group-hover:bg-rose-600/10 transition-colors duration-700" />
           <div className="max-w-3xl mx-auto space-y-10 relative z-10">
-            {/* H2 para mantener orden jerárquico */}
             <h2
               className={`${playfair.className} text-4xl sm:text-6xl text-white`}
             >
-              ¿No sabés qué tratamiento es ideal para vos?
+              ¿No sabés qué tratamiento <br className="hidden sm:block" /> es
+              ideal para vos?
             </h2>
             <p className="text-neutral-300 font-light text-xl">
-              Agendá una sesión de diagnóstico.
+              Agendá una sesión de diagnóstico con nuestras especialistas.
             </p>
             <div className="pt-6">
               <Link
                 href="/contact"
-                className="inline-block bg-rose-600 text-white px-14 py-5 rounded-full font-bold uppercase tracking-widest hover:bg-rose-700 transition-all shadow-xl"
+                className="inline-block bg-rose-600 text-white px-14 py-5 rounded-full font-bold uppercase tracking-widest hover:bg-rose-700 hover:-translate-y-1 transition-all shadow-xl shadow-rose-900/40"
               >
                 Solicitar Diagnóstico
               </Link>
