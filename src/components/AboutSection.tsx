@@ -8,19 +8,10 @@ const playfair = Playfair_Display({ subsets: ["latin"], weight: "700" });
 
 export default function AboutSection() {
   return (
-    <section className="relative py-32 sm:py-40 overflow-hidden">
-      {/* 1. FONDO CON DEGRADADO INTEGRADO: Blanco -> Rosa -> Blanco */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            "linear-gradient(to bottom, #ffffff 0%, #fef2f2 15%, #fef2f2 85%, #ffffff 100%)",
-        }}
-      />
-
+    <section className="relative py-32 bg-neutral-50 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          {/* LADO IZQUIERDO: Fotografía y Composición */}
+          {/* LADO IZQUIERDO: Imágenes */}
           <motion.div
             className="relative"
             variants={fadeIn}
@@ -28,35 +19,30 @@ export default function AboutSection() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {/* CUADRADO DECORATIVO */}
-            <div className="absolute -top-12 -left-12 w-72 h-72 bg-white rounded-[3rem] -z-10 shadow-sm opacity-80 blur-[2px]" />
-
-            {/* IMAGEN PRINCIPAL */}
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] shadow-2xl border-4 border-white/30">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] shadow-2xl">
               <Image
-                src="/images/interior.jpg"
-                alt="Nuestra Clínica"
+                src="/images/interior.jpg" // Asegurate de tener esta imagen
+                alt="Instalaciones Beauty Center"
                 fill
                 className="object-cover"
               />
             </div>
-
-            {/* IMAGEN DE LA PROFESIONAL */}
+            {/* Imagen flotante pequeña */}
             <motion.div
-              className="absolute -bottom-10 -right-8 hidden sm:block w-80 aspect-video overflow-hidden rounded-2xl shadow-2xl border-[12px] border-white"
+              className="absolute -bottom-12 -right-12 hidden md:block w-64 aspect-square overflow-hidden rounded-full border-8 border-neutral-50 shadow-xl"
               variants={fadeInUp}
-              transition={{ delay: 0.4, duration: 0.8 }}
+              transition={{ delay: 0.3 }}
             >
               <Image
-                src="/images/aboutsection-final-hd.png"
-                alt="Atención personalizada"
+                src="/images/aboutsection-final-hd.png" // Tu imagen secundaria
+                alt="Detalle"
                 fill
-                className="object-cover object-[center_20%]"
+                className="object-cover"
               />
             </motion.div>
           </motion.div>
 
-          {/* LADO DERECHO: Texto Editorial */}
+          {/* LADO DERECHO: Texto */}
           <motion.div
             className="space-y-10"
             variants={fadeInUp}
@@ -64,15 +50,15 @@ export default function AboutSection() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <div className="space-y-4">
-              <span className="text-rose-400 font-bold tracking-[0.3em] uppercase text-xs block">
-                Nuestra Filosofía
+            <div>
+              <span className="text-rose-600 font-bold tracking-[0.3em] uppercase text-xs block mb-4">
+                Nuestra Esencia
               </span>
               <h2
-                className={`${playfair.className} text-4xl sm:text-5xl text-neutral-900 leading-tight`}
+                className={`${playfair.className} text-4xl sm:text-6xl text-neutral-900 leading-tight`}
               >
-                Ciencia avanzada aplicada al{" "}
-                <span className="italic font-light text-rose-500/80">
+                Ciencia aplicada al <br />
+                <span className="italic text-rose-500">
                   arte de la belleza.
                 </span>
               </h2>
@@ -81,42 +67,40 @@ export default function AboutSection() {
             <div className="space-y-6 text-neutral-600 text-lg leading-relaxed font-light">
               <p>
                 En{" "}
-                <span className="text-neutral-900 font-medium italic">
+                <strong className="font-medium text-neutral-900">
                   Beauty Center Rosario
-                </span>
-                , entendemos que cada tratamiento es un camino hacia la
-                confianza personal. No buscamos cambiar quién sos, sino
-                potenciar tu mejor versión.
+                </strong>
+                , creemos que la estética no es superficialidad, sino bienestar.
               </p>
               <p>
-                Bajo la dirección de profesionales formados en la excelencia,
-                combinamos protocolos de vanguardia con un trato humano y
-                detallista. En nuestro espacio, la seguridad y la armonía
-                estética van de la mano.
+                Bajo la dirección de profesionales especializados, combinamos la
+                calidez humana con protocolos médicos rigurosos. No buscamos
+                transformarte en alguien más, sino revelar la versión más
+                luminosa y segura de vos misma.
               </p>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-12 pt-10 border-t border-rose-300/40">
+            {/* Stats Minimalistas */}
+            <div className="flex gap-12 pt-8 border-t border-neutral-200">
               <div>
-                <p
-                  className={`${playfair.className} text-4xl text-rose-500 mb-1`}
+                <span
+                  className={`${playfair.className} text-4xl text-neutral-900 block`}
                 >
                   10+
-                </p>
-                <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 font-bold">
-                  Años de Trayectoria
-                </p>
+                </span>
+                <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest">
+                  Años Experiencia
+                </span>
               </div>
               <div>
-                <p
-                  className={`${playfair.className} text-4xl text-rose-500 mb-1`}
+                <span
+                  className={`${playfair.className} text-4xl text-neutral-900 block`}
                 >
                   5k+
-                </p>
-                <p className="text-xs uppercase tracking-[0.2em] text-neutral-500 font-bold">
-                  Pacientes Felices
-                </p>
+                </span>
+                <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest">
+                  Pacientes
+                </span>
               </div>
             </div>
           </motion.div>
