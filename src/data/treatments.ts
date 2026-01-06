@@ -52,7 +52,7 @@ export const TREATMENTS_DATA: Record<string, Treatment> = {
       "Esculpí tu figura y tratá la celulitis con protocolos personalizados.",
     fullContent:
       "Combinamos la potencia de la aparatología médica con técnicas manuales exclusivas. Nuestros protocolos están diseñados para reducir medidas, tonificar tejidos y mejorar drásticamente la apariencia de la piel desde la primera sesión.",
-    image: "/images/tratamientos-corporales-3.png",
+    image: "/images/tratamientos-corporales-3-edit.png",
     price: 18000,
     items: [
       "Ultrasonido de alta potencia",
