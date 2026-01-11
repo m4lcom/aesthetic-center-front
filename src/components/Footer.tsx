@@ -26,14 +26,14 @@ export default function Footer() {
               href="/"
               className={`${playfair.className} text-2xl tracking-tight text-white uppercase`}
             >
-              BEAUTY<span className="text-rose-500">CENTER</span>{" "}
+              BEAUTY<span className="text-rose-400">CENTER</span>{" "}
               {/* Subido a rose-500 */}
             </LinkNext>
             <p className="text-neutral-300 text-sm leading-relaxed font-light">
               {" "}
               {/* neutral-400 -> 300 */}
-              Medicina estética avanzada en Rosario. Comprometidos con resaltar
-              tu armonía natural a través de ciencia y tecnología.
+              Profesionales en estética avanzada en Rosario. Comprometidos con
+              resaltar tu armonía natural a través de ciencia y tecnología.
             </p>
             <div className="flex gap-4">
               <a
@@ -117,7 +117,7 @@ export default function Footer() {
                 placeholder="Tu email"
                 className="bg-neutral-800 border border-neutral-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rose-500 transition-colors placeholder:text-neutral-400 outline-none"
               />
-              <button className="bg-rose-600 text-white rounded-xl py-3 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-rose-700 active:scale-95 transition-all shadow-md">
+              <button className="bg-rose-500 text-white rounded-xl py-3 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-rose-700 active:scale-95 transition-all shadow-md">
                 Unirse
               </button>
             </form>

@@ -28,7 +28,7 @@ export default function TreatmentsSection() {
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <span className="text-rose-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">
+          <span className="text-rose-500 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">
             Nuestros Pilares
           </span>
           <h2

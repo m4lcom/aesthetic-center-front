@@ -22,11 +22,11 @@ export default function Hero() {
             alt="Beauty Center Rosario - Estética Avanzada"
             fill
             priority
-            className="object-cover opacity-70"
+            className="object-cover opacity-70 scale-x-[-1]"
           />
         </motion.div>
         {/* Gradiente crucial para el contraste del texto blanco (SEO 100) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/40 to-neutral-900/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-rose-700/40 via-rose-700/20 to-transparent" />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl px-6 md:px-12 flex justify-start items-center h-full">
@@ -35,9 +35,9 @@ export default function Hero() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
-            className="inline-block text-rose-300 font-bold tracking-[0.4em] uppercase text-xs border-b border-rose-300/30 pb-2"
+            className="inline-block text-neutral-100 font-bold tracking-[0.4em] uppercase text-xs border-b border-rose-300/30 pb-2"
           >
-            Medicina Estética en Rosario
+            Centro de Estética en Rosario
           </motion.span>
 
           <motion.h1
@@ -59,7 +59,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-neutral-200 font-light max-w-xl leading-relaxed"
           >
-            Protocolos médicos de vanguardia diseñados para resaltar tu mejor
+            Protocolos estécos de vanguardia diseñados para resaltar tu mejor
             versión en un entorno de seguridad y confort.
           </motion.p>
 
@@ -72,7 +72,7 @@ export default function Hero() {
             <Button
               variant="primary"
               href="/contact"
-              className="px-12 py-5 text-xs tracking-widest uppercase bg-rose-600 hover:bg-rose-700 text-white shadow-2xl shadow-rose-900/50 rounded-full"
+              className="px-12 py-5 text-xs tracking-widest uppercase bg-rose-400 hover:bg-rose-600 text-white shadow-2xl shadow-rose-900/50 rounded-full"
             >
               Reservar Turno
             </Button>

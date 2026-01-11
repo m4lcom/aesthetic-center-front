@@ -40,7 +40,7 @@ const allServices = [
     description:
       "Esculpí tu figura y mejorá la textura de tu piel con tecnologías de reducción y tonificación muscular.",
     details: ["Reducción", "Tonificación", "Maderoterapia"],
-    image: "/images/tratamientos-corporales-3.png",
+    image: "/images/tratamientos-corporales-3-edit.png",
   },
 ];
 
@@ -67,7 +67,7 @@ export default function ServicesPage() {
           >
             <motion.span
               variants={fadeInUp}
-              className="text-rose-600 font-bold tracking-[0.3em] uppercase text-xs"
+              className="text-rose-500 font-bold tracking-[0.3em] uppercase text-xs"
             >
               Nuestros Tratamientos
             </motion.span>
@@ -168,7 +168,7 @@ export default function ServicesPage() {
                     <Button
                       href={`/services/${service.slug}`}
                       variant="primary"
-                      className="rounded-full px-10 bg-rose-600 text-white shadow-xl shadow-rose-200 hover:shadow-rose-300 transition-all"
+                      className="rounded-full px-10 bg-rose-500 text-white shadow-xl shadow-rose-200 hover:shadow-rose-300 transition-all"
                     >
                       Ver detalles
                     </Button>
@@ -197,7 +197,7 @@ export default function ServicesPage() {
             <div className="pt-6">
               <Link
                 href="/contact"
-                className="inline-block bg-rose-600 text-white px-14 py-5 rounded-full font-bold uppercase tracking-widest hover:bg-rose-700 hover:-translate-y-1 transition-all shadow-xl shadow-rose-900/40"
+                className="inline-block bg-rose-500 text-white px-14 py-5 rounded-full font-bold uppercase tracking-widest hover:bg-rose-700 hover:-translate-y-1 transition-all shadow-xl shadow-rose-900/40"
               >
                 Solicitar Diagnóstico
               </Link>

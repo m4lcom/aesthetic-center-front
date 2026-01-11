@@ -51,14 +51,14 @@ export default function AboutSection() {
             viewport={{ once: true }}
           >
             <div>
-              <span className="text-rose-600 font-bold tracking-[0.3em] uppercase text-xs block mb-4">
+              <span className="text-rose-500 font-bold tracking-[0.3em] uppercase text-xs block mb-4">
                 Nuestra Esencia
               </span>
               <h2
                 className={`${playfair.className} text-4xl sm:text-6xl text-neutral-900 leading-tight`}
               >
                 Ciencia aplicada al <br />
-                <span className="italic text-rose-500">
+                <span className="italic text-rose-400">
                   arte de la belleza.
                 </span>
               </h2>
@@ -86,7 +86,7 @@ export default function AboutSection() {
                 <span
                   className={`${playfair.className} text-4xl text-neutral-900 block`}
                 >
-                  10+
+                  15+
                 </span>
                 <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest">
                   Años Experiencia
@@ -96,7 +96,7 @@ export default function AboutSection() {
                 <span
                   className={`${playfair.className} text-4xl text-neutral-900 block`}
                 >
-                  5k+
+                  1k+
                 </span>
                 <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest">
                   Pacientes

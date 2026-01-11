@@ -16,7 +16,7 @@ import Button from "@/src/components/Button";
 const playfair = Playfair_Display({ subsets: ["latin"], weight: "700" });
 
 // --- CONFIGURACIÓN DE CONTACTO ---
-const WHATSAPP_NUMBER = "5493412524242"; // Tu número real
+const WHATSAPP_NUMBER = "5493413304892"; // Tu número real
 const WHATSAPP_MSG = encodeURIComponent(
   "¡Hola! Me gustaría agendar una consulta de evaluación en Beauty Center Rosario."
 );
@@ -71,14 +71,14 @@ export default function ContactSection({
             viewport={{ once: true }}
           >
             <div className="space-y-4">
-              <span className="text-rose-600 font-bold tracking-[0.3em] uppercase text-xs block">
+              <span className="text-rose-500 font-bold tracking-[0.3em] uppercase text-xs block">
                 Contacto
               </span>
               <h2
                 className={`${playfair.className} text-4xl sm:text-5xl text-neutral-900 leading-tight`}
               >
                 Comenzá tu <br />
-                <span className="italic font-light text-rose-600">
+                <span className="italic font-light text-rose-400">
                   transformación.
                 </span>
               </h2>
@@ -107,7 +107,7 @@ export default function ContactSection({
                 <div>
                   <h3 className="font-bold text-neutral-900">Teléfono</h3>
                   <p className="text-neutral-600 font-light text-sm mt-1">
-                    +54 9 341 252-4242
+                    +54 9 341 330 4892
                   </p>
                 </div>
               </div>
@@ -135,7 +135,7 @@ export default function ContactSection({
             transition={{ delay: 0.2 }}
           >
             {/* Decoración superior */}
-            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-rose-400 to-rose-600" />
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-rose-200 to-rose-500" />
 
             {status === "success" ? (
               <motion.div
@@ -213,6 +213,7 @@ export default function ContactSection({
                     <option value="facial">Armonización Facial</option>
                     <option value="laser">Depilación Láser</option>
                     <option value="corporal">Modelado Corporal</option>
+                    <option value="plasma">Plasma Rico En Plaquetas</option>
                     <option value="capilar">Tratamiento Capilar</option>
                     <option value="otro">Otro / Consulta General</option>
                   </select>

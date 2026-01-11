@@ -88,13 +88,13 @@ export default function ContactPage() {
             </h2>
             <div className="flex items-center gap-3 text-neutral-500 text-lg font-light">
               <FaMapMarkerAlt className="text-rose-400 shrink-0" />
-              <p>Bv. Oroño 1000, Rosario, Santa Fe.</p>
+              <p>Castellanos 1556, Rosario, Santa Fe.</p>
             </div>
           </div>
 
           <div className="w-full h-[550px] bg-neutral-100 rounded-[3.5rem] overflow-hidden shadow-2xl relative border border-neutral-100 grayscale hover:grayscale-0 transition-all duration-1000 group">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.243547287738!2d-60.655866!3d-32.944243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7ab16b9b3f3b1%3A0x2a1a8c0d1d604e4e!2sBv.%20Oro%C3%B1o%201000%2C%20S2000%20Rosario%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1704065400000!5m2!1ses-419!2sar"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.0720589678017!2d-60.68015622453255!3d-32.949106873592314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7aca0de0f9ecd%3A0x6a839c5913dc1a64!2sCastellanos%201556%2C%20S2000%20Rosario%2C%20Santa%20Fe!5e0!3m2!1ses!2sar!4v1768093787976!5m2!1ses!2sar"
               width="100%"
               height="100%"
               style={{ border: 0 }}

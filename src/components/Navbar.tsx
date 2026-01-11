@@ -59,7 +59,7 @@ export default function Navbar() {
               }`}
             >
               Beauty
-              <span className={isTransparent ? "text-white" : "text-rose-600"}>
+              <span className={isTransparent ? "text-white" : "text-rose-400"}>
                 Center
               </span>
             </span>
@@ -73,7 +73,7 @@ export default function Navbar() {
                 href={link.href}
                 className={`text-[12px] font-bold tracking-[0.15em] uppercase transition-colors duration-500 ${
                   pathname === link.href
-                    ? "text-rose-600"
+                    ? "text-rose-400"
                     : isTransparent
                     ? "text-white/90 hover:text-rose-300"
                     : "text-neutral-700 hover:text-rose-600"
@@ -92,7 +92,7 @@ export default function Navbar() {
               className={`rounded-full px-8 py-2.5 text-[11px] tracking-widest uppercase shadow-lg transition-all duration-500 ${
                 isTransparent
                   ? "bg-white !text-neutral-900 hover:bg-neutral-100 shadow-none"
-                  : "bg-rose-600 hover:bg-rose-700 shadow-rose-200"
+                  : "bg-rose-400 hover:bg-rose-700 shadow-rose-200"
               }`}
             >
               Reservar Turno
@@ -140,7 +140,7 @@ export default function Navbar() {
           rel="noopener noreferrer"
           onClick={() => setOpen(false)}
           aria-label="Reservar turno por WhatsApp"
-          className="mt-4 rounded-full px-12 py-4 shadow-xl uppercase tracking-widest text-[11px] font-bold bg-rose-600 text-white"
+          className="mt-4 rounded-full px-12 py-4 shadow-xl uppercase tracking-widest text-[11px] font-bold bg-rose-400 text-white"
         >
           Reservar Turno
         </Button>

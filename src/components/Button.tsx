@@ -1,7 +1,13 @@
 "use client";
-import clsx from "clsx";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import { ComponentPropsWithoutRef } from "react";
+
+// Utilidad para combinar clases sin conflictos (Standard de la industria)
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "accent" | "neutral";
 
@@ -25,7 +31,7 @@ export default function Button({
     "inline-flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
   const variants: Record<ButtonVariant, string> = {
-    // Usamos rose-600 para que el texto blanco tenga contraste 4.5:1
+    // Definimos los estilos base por variante
     primary:
       "bg-rose-600 text-white shadow-sm hover:bg-rose-700 focus:ring-rose-500",
     secondary:
@@ -38,7 +44,9 @@ export default function Button({
       "bg-neutral-200 text-neutral-900 shadow-sm hover:bg-neutral-300 focus:ring-neutral-400",
   };
 
-  const styles = clsx(baseStyles, variants[variant], className);
+  // cn() ahora permite que el 'className' que mandás desde la Navbar
+  // sobreescriba a 'variants[variant]' sin usar el signo '!' (important)
+  const styles = cn(baseStyles, variants[variant], className);
 
   if (href) {
     return (
@@ -49,7 +57,12 @@ export default function Button({
   }
 
   return (
-    <button onClick={onClick} className={styles} {...(props as any)}>
+    <button
+      onClick={onClick}
+      className={styles}
+      type="button" // Buena práctica: evita submits accidentales
+      {...(props as any)}
+    >
       {children}
     </button>
   );
