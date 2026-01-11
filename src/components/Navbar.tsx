@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 
 const playfair = Playfair_Display({ subsets: ["latin"], weight: "700" });
 
-const WHATSAPP_NUMBER = "5493412524242";
+const WHATSAPP_NUMBER = "5493413304892";
 const WHATSAPP_MSG = encodeURIComponent(
   "¡Hola! Vengo desde la web y me gustaría reservar un turno en Beauty Center."
 );
