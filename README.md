@@ -14,9 +14,13 @@ This project was built with a strong focus on **Local SEO**, **Core Web Vitals**
 ## 📸 Project Gallery
 
 ### 🎨 User Interface & Experience
-<div align="center">
-  <img src="./screenshots/home-full-preview.png" alt="Desktop Full Preview" width="100%" style="border-radius: 8px; margin-bottom: 20px;">
-</div>
+<details>
+  <summary><strong>👁️ Ver Diseño Completo (Click para expandir)</strong></summary>
+  <br>
+  <div align="center">
+    <img src="./screenshots/home-full-preview.png" alt="Desktop Full Preview" width="100%" style="border-radius: 8px;">
+  </div>
+</details>
 
 <br>
 
@@ -28,9 +32,9 @@ This project was built with a strong focus on **Local SEO**, **Core Web Vitals**
 ---
 
 ### ⚡ Performance Metrics (Core Web Vitals)
-Achieving a **100/100 score** on Google Lighthouse was a core requirement for this project to ensure top-tier SEO ranking in Rosario.
+Achieving a **near-perfect 99/100 score** on Google Lighthouse was a core requirement for this project to ensure top-tier SEO ranking and instant loading times in Rosario.
 
-| **Desktop Performance** | **Mobile Performance** |
+| **Desktop Performance (99)** | **Mobile Performance (99)** |
 | :---: | :---: |
 | <img src="./screenshots/lighthouse-score-desktop.png" alt="Lighthouse Desktop Score" width="100%"/> | <img src="./screenshots/lighthouse-score-mobile.png" alt="Lighthouse Mobile Score" width="100%"/> |
 
