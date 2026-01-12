@@ -21,7 +21,7 @@ export default function AboutSection() {
           >
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] shadow-2xl">
               <Image
-                src="/images/interior.jpg" // Asegurate de tener esta imagen
+                src="/images/foto-spa-editado.jpg" // Asegurate de tener esta imagen
                 alt="Instalaciones Beauty Center"
                 fill
                 className="object-cover"
