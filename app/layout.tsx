@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/src/components/Navbar";
 import Footer from "@/src/components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 
 const montserrat = Montserrat({
@@ -114,6 +115,7 @@ export default function RootLayout({
           <SpeedInsights />
         </main>
 
+        <Analytics />
         <Footer />
       </body>
     </html>
