@@ -1,12 +1,12 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/private/',
+      disallow: ['/api/', '/private/'], // Rutas que no queremos en Google
     },
-    sitemap: 'https://aesthetic-center-front.vercel.app/', // Reemplaza con tu dominio
-  }
+    sitemap: 'https://nurestetica.com.ar/sitemap.xml',
+  };
 }

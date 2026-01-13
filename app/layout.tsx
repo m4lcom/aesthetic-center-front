@@ -3,46 +3,58 @@ import "./globals.css";
 import Navbar from "@/src/components/Navbar";
 import Footer from "@/src/components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-sans",
-  display: "swap", // Mejora el Performance (evita el "flicker" de fuentes)
+  display: "swap",
 });
 
 export const metadata = {
+  metadataBase: new URL("https://nurestetica.com.ar"), // Define la base para todas las imágenes y links
   title: {
-    default: "Beauty Center | Estética Avanzada en Rosario",
-    template: "%s | Beauty Center",
+    default: "Nur Estética | Tratamientos Avanzados en Rosario",
+    template: "%s | Nur Estética",
   },
   description:
-    "Especialistas en armonización facial, depilación láser soprano y tratamientos corporales en Rosario.",
+    "Centro de estética integral en Rosario. Especialistas en depilación láser, armonización facial y tratamientos corporales personalizados. Tecnología de vanguardia.",
   keywords: [
+    "Nur Estética",
     "Estética Rosario",
-    "Depilación Láser",
+    "Depilación Láser Rosario",
     "Armonización Facial",
-    "Medicina Estética",
     "Tratamientos Corporales",
-    "Beauty Center",
-    "Plasma Rico en Plaquetas",
-    "Limpieza Facial",
-    "Modelado Corporal",
-    "Peeling",
+    "Limpieza Facial Profunda",
+    "Medicina Estética",
   ],
   openGraph: {
-    title: "Beauty Center Rosario",
-    description: "Resaltamos tu belleza natural con tecnología de vanguardia.",
-    url: "https://aesthetic-center-front.vercel.app/",
-    siteName: "Beauty Center",
+    title: "Nur Estética Rosario",
+    description:
+      "Resaltamos tu belleza natural con tecnología de vanguardia y atención personalizada.",
+    url: "https://nurestetica.com.ar",
+    siteName: "Nur Estética",
     images: [
       {
-        url: "/og-image.jpg", // Deberías poner una imagen linda de 1200x630 en /public
+        url: "/og-image.jpg", // Asegurate de tener esta foto en la carpeta public
         width: 1200,
         height: 630,
+        alt: "Nur Estética - Centro de Belleza en Rosario",
       },
     ],
     locale: "es_AR",
     type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -51,16 +63,57 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Schema para SEO Local (Google Maps y Rich Snippets)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HealthAndBeautyBusiness",
+    name: "Nur Estética",
+    image: "https://nurestetica.com.ar/og-image.jpg",
+    description:
+      "Centro de estética integral en Rosario especializado en tratamientos faciales y corporales.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Rosario",
+      addressRegion: "Santa Fe",
+      addressCountry: "AR",
+    },
+    url: "https://nurestetica.com.ar",
+    telephone: "+5493413304892", // Tu número de WhatsApp
+    priceRange: "$$",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        opens: "09:00",
+        closes: "20:00",
+      },
+    ],
+  };
+
   return (
-    // Aseguramos que el lang esté siempre presente (Vital para Accesibilidad)
     <html lang="es" className={`${montserrat.variable} scroll-smooth`}>
       <body className="flex min-h-screen flex-col font-sans antialiased text-neutral-900 bg-white">
+        {/* Inyección del Schema JSON-LD */}
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+
         <Navbar />
-        {/* Usar etiquetas semánticas ayuda a los lectores de pantalla */}
+
         <main id="main-content" className="flex-1">
           {children}
           <SpeedInsights />
         </main>
+
         <Footer />
       </body>
     </html>

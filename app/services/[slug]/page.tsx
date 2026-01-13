@@ -6,9 +6,12 @@ import { Playfair_Display } from "next/font/google";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-const playfair = Playfair_Display({ subsets: ["latin"], weight: "700" });
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
-// 1. SEO DINÁMICO
+// 1. SEO DINÁMICO OPTIMIZADO
 export async function generateMetadata({
   params,
 }: {
@@ -19,10 +22,14 @@ export async function generateMetadata({
   if (!data) return { title: "Servicio no encontrado" };
 
   return {
-    title: `${data.title} | Beauty Center Rosario`,
-    description: data.description,
+    title: `${data.title} | Nur Estética Rosario`,
+    description: `${data.description} Especialistas en estética avanzada en Rosario.`,
     alternates: {
-      canonical: `https://aesthetic-center-front.vercel.app/services/${slug}`,
+      canonical: `https://nurestetica.com.ar/services/${slug}`,
+    },
+    openGraph: {
+      title: `${data.title} | Nur Estética`,
+      images: [data.image],
     },
   };
 }
@@ -41,81 +48,95 @@ export default async function ServicePage({
 
   if (!data) notFound();
 
-  // Filtrar otros servicios para la navegación inferior
   const otherServices = Object.values(TREATMENTS_DATA).filter(
     (s) => s.slug !== slug
   );
 
-  const WHATSAPP_NUMBER = "5493412524242";
+  // Configuración de contacto
+  const WHATSAPP_NUMBER = "5493413304892";
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hola! Me interesa info sobre ${data.title}`
+    `Hola Nur Estética! Me interesa info sobre el tratamiento: ${data.title}`
   )}`;
 
   return (
-    <main className="min-h-screen pt-32 pb-20 bg-white">
+    <main className="min-h-screen pt-32 pb-20 bg-white selection:bg-rose-100">
       <div className="mx-auto max-w-6xl px-6">
-        {/* SECCIÓN PRINCIPAL: DETALLE */}
-        <div className="grid gap-12 lg:gap-16 md:grid-cols-2 items-start mb-32">
-          <div className="aspect-[4/5] overflow-hidden rounded-3xl shadow-2xl border-8 border-neutral-50 md:sticky md:top-32 relative">
+        {/* SECCIÓN PRINCIPAL */}
+        <div className="grid gap-12 lg:gap-20 md:grid-cols-2 items-start mb-32">
+          {/* Lado Izquierdo: Imagen con efecto de profundidad */}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-neutral-100 shadow-2xl md:sticky md:top-32">
             <Image
               src={data.image}
-              alt={data.title}
+              alt={`${data.title} - Nur Estética Rosario`}
               fill
-              className="object-cover"
-              priority
+              className="object-cover transition-transform duration-700 hover:scale-105"
+              priority // Crucial para el 99/100 de Lighthouse
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
 
-          <div className="flex flex-col space-y-10">
+          {/* Lado Derecho: Contenido */}
+          <div className="flex flex-col space-y-12">
             <div>
-              <span className="text-rose-600 font-bold tracking-widest uppercase text-xs">
-                Tratamiento Especializado
-              </span>
+              <nav className="flex items-center gap-2 mb-4 text-[10px] uppercase tracking-[0.3em] text-rose-500 font-bold">
+                <span>Servicios</span>
+                <span className="text-neutral-300">/</span>
+                <span>{data.title}</span>
+              </nav>
               <h1
-                className={`${playfair.className} text-4xl lg:text-6xl text-neutral-900 mt-2 leading-tight`}
+                className={`${playfair.className} text-5xl lg:text-7xl text-neutral-900 leading-[1.1]`}
               >
                 {data.title}
               </h1>
             </div>
 
-            <p className="text-xl text-neutral-700 leading-relaxed italic border-l-4 border-rose-500 pl-6">
-              "{data.description}"
-            </p>
+            {/* Quote con diseño editorial */}
+            <blockquote className="relative">
+              <span className="absolute -top-4 -left-2 text-7xl text-rose-100 font-serif">
+                “
+              </span>
+              <p className="relative text-2xl text-neutral-800 leading-relaxed font-light">
+                {data.description}
+              </p>
+            </blockquote>
 
             <div className="prose prose-neutral max-w-none">
-              <p className="text-neutral-600 text-lg leading-relaxed whitespace-pre-line">
+              <p className="text-neutral-600 text-lg leading-relaxed whitespace-pre-line border-t border-neutral-100 pt-8">
                 {data.fullContent}
               </p>
             </div>
 
-            <div className="space-y-6">
-              <h2 className={`${playfair.className} text-2xl text-neutral-900`}>
-                ¿Qué incluye este servicio?
+            {/* Lista de beneficios con mejor espaciado */}
+            <div className="space-y-8">
+              <h2 className={`${playfair.className} text-3xl text-neutral-900`}>
+                Detalles del servicio
               </h2>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {data.items.map((item, index) => (
-                  <li
+                  <div
                     key={index}
-                    className="flex items-center gap-3 bg-neutral-50 p-4 rounded-xl border border-neutral-100 transition-all hover:border-rose-200"
+                    className="flex items-center gap-4 bg-neutral-50/50 p-4 rounded-2xl border border-neutral-100 transition-colors hover:bg-white hover:border-rose-200"
                   >
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-rose-100 flex items-center justify-center">
-                      <CheckIcon className="h-4 w-4 text-rose-600 stroke-[3]" />
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center">
+                      <CheckIcon className="h-5 w-5 text-rose-500" />
                     </div>
-                    <span className="text-neutral-800 text-sm font-medium">
+                    <span className="text-neutral-700 text-sm font-medium leading-tight">
                       {item}
                     </span>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
-            <div className="bg-neutral-900 p-8 rounded-[2rem] shadow-2xl space-y-6 text-white">
-              <div className="flex items-baseline justify-between">
-                <span className="text-neutral-400 font-medium text-sm uppercase tracking-wider">
-                  Inversión desde
+            {/* Card de CTA Premium */}
+            <div className="bg-neutral-900 p-10 rounded-[3rem] shadow-2xl space-y-8 text-white relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-full blur-3xl -mr-10 -mt-10" />
+
+              <div className="flex flex-col gap-2 relative z-10">
+                <span className="text-rose-400 font-semibold text-xs uppercase tracking-widest">
+                  Precio del tratamiento
                 </span>
-                <span className="text-3xl font-bold">
+                <span className="text-5xl font-light">
                   {new Intl.NumberFormat("es-AR", {
                     style: "currency",
                     currency: "ARS",
@@ -123,51 +144,63 @@ export default async function ServicePage({
                   }).format(data.price)}
                 </span>
               </div>
+
               <Button
                 href={whatsappUrl}
                 variant="primary"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-rose-600 hover:bg-rose-700 h-14 text-white font-bold"
+                className="w-full h-16 text-lg tracking-wide rounded-2xl group-hover:scale-[1.02] transition-transform"
               >
-                Consultar WhatsApp
+                Agendar Turno
               </Button>
             </div>
           </div>
         </div>
 
-        {/* NUEVA SECCIÓN: OTROS TRATAMIENTOS */}
-        <section className="border-t border-neutral-100 pt-20">
-          <h2
-            className={`${playfair.className} text-3xl text-neutral-900 mb-12 text-center`}
-          >
-            Explorá otros tratamientos
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        {/* OTROS TRATAMIENTOS - Diseño más minimalista */}
+        <section className="border-t border-neutral-100 pt-32">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <h2 className={`${playfair.className} text-4xl text-neutral-900`}>
+                Seguí explorando
+              </h2>
+              <p className="text-neutral-500 mt-2">
+                Otros tratamientos que podrían interesarte
+              </p>
+            </div>
+            <Link
+              href="/services"
+              className="text-rose-600 font-bold text-sm uppercase tracking-widest hover:text-rose-700 transition-colors border-b-2 border-rose-100 pb-1"
+            >
+              Ver todos los servicios
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
             {otherServices.map((service) => (
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group block space-y-4"
+                className="group block"
               >
-                <div className="relative aspect-video overflow-hidden rounded-2xl bg-neutral-100 shadow-md transition-all duration-500 group-hover:shadow-xl">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[2rem] bg-neutral-100 mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
                   <Image
                     src={service.image}
                     alt={service.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 duration-500">
-                      Ver Detalles
-                    </span>
-                  </div>
+                  <div className="absolute inset-0 bg-neutral-900/0 group-hover:bg-neutral-900/20 transition-colors duration-500" />
                 </div>
-                <h3 className="text-lg font-medium text-neutral-900 group-hover:text-rose-600 transition-colors">
+                <h3
+                  className={`${playfair.className} text-xl text-neutral-900 group-hover:text-rose-600 transition-colors`}
+                >
                   {service.title}
                 </h3>
+                <p className="text-neutral-500 text-sm mt-2 line-clamp-2">
+                  {service.description}
+                </p>
               </Link>
             ))}
           </div>

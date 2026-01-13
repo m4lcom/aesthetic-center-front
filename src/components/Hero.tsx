@@ -59,7 +59,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-neutral-200 font-light max-w-xl leading-relaxed"
           >
-            Protocolos estécos de vanguardia diseñados para resaltar tu mejor
+            Protocolos estéticos de vanguardia diseñados para resaltar tu mejor
             versión en un entorno de seguridad y confort.
           </motion.p>
 
