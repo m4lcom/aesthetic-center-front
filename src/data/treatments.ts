@@ -16,7 +16,7 @@ export const TREATMENTS_DATA: Record<string, Treatment> = {
       "Recuperá la frescura y juventud de tu rostro sin pasar por el quirófano.",
     fullContent:
       "Buscamos resaltar tu belleza natural mediante técnicas mínimamente invasivas. Nos especializamos en devolverle al rostro la estructura, firmeza y luminosidad perdida por el paso del tiempo, utilizando productos de alta gama y resultados sutiles pero impactantes.",
-    image: "/images/skin-care.jpg",
+    image: "/images/tratamientos-faciales-edit.jpg",
     price: 30000,
     items: [
       "Bioestimulación (Skinboosters)",
