@@ -7,7 +7,7 @@
 
 > **Live Demo:** [nurestetica.com.ar](https://nurestetica.com.ar)
 
-**NUR Aesthetic** is a high-performance web application designed for a premium beauty center in Rosario, Argentina. 
+**NUR Aesthetic** is a high-performance web application designed for a premium beauty center in Rosario, Argentina.
 
 This project was built with a strong focus on **Local SEO**, **Core Web Vitals**, and a **Data-Driven Architecture** to ensure scalability and ease of maintenance.
 
@@ -16,6 +16,7 @@ This project was built with a strong focus on **Local SEO**, **Core Web Vitals**
 ## 📸 Project Gallery
 
 ### 🎨 User Interface & Experience
+
 <details>
   <summary><strong>👁️ Ver Diseño Completo (Click para expandir)</strong></summary>
   <br>
@@ -26,54 +27,69 @@ This project was built with a strong focus on **Local SEO**, **Core Web Vitals**
 
 <br>
 
-| **📱 Mobile Responsiveness** | **✨ Dynamic Service Pages** |
-| :---: | :---: |
+|                       **📱 Mobile Responsiveness**                       |                            **✨ Dynamic Service Pages**                             |
+| :----------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
 | <img src="./screenshots/mobile-menu.png" alt="Mobile Menu" width="300"/> | <img src="./screenshots/service-detail.png" alt="Service Detail Page" width="300"/> |
-| *Smooth transitions & backdrop blur* | *Auto-generated pages based on data* |
+|                   _Smooth transitions & backdrop blur_                   |                     _Auto-generated pages based on data layer_                      |
 
 ---
 
 ### ⚡ Performance Metrics (Core Web Vitals)
+
 Achieving a **near-perfect 99/100 score** on Google Lighthouse was a core requirement for this project to ensure top-tier SEO ranking and instant loading times in Rosario.
 
-| **Desktop Performance (99)** | **Mobile Performance (99)** |
-| :---: | :---: |
-| <img src="./screenshots/lighthouse-score-desktop.png" alt="Lighthouse Desktop Score" width="100%"/> | <img src="./screenshots/lighthouse-score-mobile.png" alt="Lighthouse Mobile Score" width="100%"/> |
+| Performance | Accessibility | Best Practices |  SEO   |
+| :---------: | :-----------: | :------------: | :----: |
+|   🟢 100    |    🟢 100     |     🟢 100     | 🟢 100 |
+
+|                                       **Desktop Performance (99)**                                       |                                      **Mobile Performance (99)**                                       |
+| :------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: |
+| <img src="./screenshots/lighthouse-score-full-desktop.png" alt="Lighthouse Desktop Score" width="100%"/> | <img src="./screenshots/lighthouse-score-full-mobile.png" alt="Lighthouse Mobile Score" width="100%"/> |
 
 ---
 
 ## 🚀 Key Features
 
 ### 🔍 Advanced SEO & Discovery
--   **Dynamic Metadata:** Automatically generates unique `title` and `description` tags for every service page based on the data layer.
--   **Automated Sitemap:** A server-side `sitemap.ts` that updates in real-time.
--   **JSON-LD Schema:** Integration of `LocalBusiness` structured data to boost visibility in Google Maps and search results.
--   **Analytics:** Integrated **Google Analytics 4** and **Google Search Console** for conversion tracking.
+
+- **Dynamic Metadata:** Automatically generates unique `title` and `description` tags for every service page based on the data layer.
+- **Automated Sitemap:** A server-side `sitemap.ts` that updates in real-time.
+- **JSON-LD Schema:** Integration of `LocalBusiness` structured data to boost visibility in Google Maps and search results.
+- **Robots & Crawling:** Optimized `robots.ts` to manage search engine indexing efficiently.
+- **Analytics:** Integrated **Google Analytics 4** and **Google Search Console** for conversion tracking.
+
+### ✉️ Secure Communication
+
+- **Server Actions:** Contact form powered by Next.js Server Actions, eliminating the need for external API routes.
+- **Resend Integration:** Reliable email delivery service with professional HTML templates and server-side validation.
 
 ### 🎨 UI/UX Design System
--   **Premium Aesthetic:** Features a custom color palette (`Rose-400`/`Neutral-900`) and typography (`Playfair Display` & `Montserrat`) to reflect the brand's identity.
--   **Responsive & Interactive:** Fully responsive layouts with smooth micro-interactions built with Tailwind CSS.
--   **Performance First:** Optimized images using `next/image` with priority loading strategies.
+
+- **Premium Aesthetic:** Features a custom color palette (`Rose-400`/`Neutral-900`) and typography (`Playfair Display` & `Montserrat`) to reflect the brand's identity.
+- **Responsive & Interactive:** Fully responsive layouts with smooth micro-interactions built with Tailwind CSS.
+- **Performance First:** Optimized images using `next/image` with priority loading strategies.
 
 ---
 
-## 🏗️ Data Architecture & Scalability
+## 🏗️ Architecture & Scalability
 
 The project follows a **Data-Driven** approach:
 
--   **Centralized Data Source:** All clinical treatments and services are managed through a centralized typed constant (`TREATMENTS_DATA`).Updating a price or description reflects instantly across the app.
--   **Dynamic Routing:** Leveraging Next.js App Router (`/services/[slug]`), the application generates unique pages for each treatment on-demand.
--   **Type Safety:** Strict TypeScript implementation for service definitions ensures compile-time error catching.
+- **Centralized Data Source:** All clinical treatments and services are managed through a centralized typed constant (`TREATMENTS_DATA`).Updating a price or description reflects instantly across the app.
+- **Dynamic Routing:** Leveraging Next.js App Router (`/services/[slug]`), the application generates unique pages for each treatment on-demand.
+- **Type Safety:** 100% TypeScript coverage ensuring robust data handling and developer productivity.
+- **Environment Management:** Secure handling of API keys (Resend, GA4) via `.env` architecture.
 
 ---
 
 ## 🛠️ Tech Stack
 
--   **Framework:** [Next.js 15 (App Router)](https://nextjs.org/)
--   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
--   **Language:** [TypeScript](https://www.typescriptlang.org/)
--   **Analytics:** [Google Analytics 4](https://analytics.google.com/)
--   **Deployment:** [Vercel](https://vercel.com/) (Edge Network)
+- **Framework:** [Next.js 15 (App Router)](https://nextjs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Analytics:** [Google Analytics 4](https://analytics.google.com/)
+- **Email:** [Resend](https://resend.com/)
+- **Deployment:** [Vercel](https://vercel.com/) (Edge Network)
 
 ---
 
@@ -82,16 +98,27 @@ The project follows a **Data-Driven** approach:
 To run this project locally:
 
 1.  **Clone the repository:**
+
     ```bash
     git clone [https://github.com/your-username/nur-aesthetic-studio.git](https://github.com/your-username/nur-aesthetic-studio.git)
     ```
 
 2.  **Install dependencies:**
+
     ```bash
     npm install
     ```
 
+3.  **Set up environment variables:**
+
+
+    ```bash
+    NEXT_PUBLIC_GA_ID=your_id_here
+    RESEND_API_KEY=your_key_here
+    ```
+
 3.  **Run the development server:**
+
     ```bash
     npm run dev
     ```
@@ -119,6 +146,6 @@ To run this project locally:
 ## 👤 Author
 
 **malcom**
-*Software Engineer | Full Stack (.NET & Next.js)*
+_Software Engineer | Full Stack (.NET & Next.js)_
 <br>
-*University Technician in Programming (UTN Rosario)*
+_University Technician in Programming (UTN Rosario)_
