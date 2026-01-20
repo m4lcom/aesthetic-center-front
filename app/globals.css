@@ -17,4 +17,13 @@
   .rotate-y-180 {
     transform: rotateY(180deg);
   }
+  /* Filtro premium para mapas o imágenes externas */
+  .premium-map {
+    filter: grayscale(100%) invert(92%) contrast(83%) sepia(8%);
+    transition: filter 0.5s ease;
+  }
+
+  .premium-map:hover {
+    filter: grayscale(20%) invert(0%) contrast(100%);
+  }
 }

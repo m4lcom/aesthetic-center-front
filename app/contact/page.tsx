@@ -70,7 +70,7 @@ export default function ContactPage() {
         />
 
         <div className="relative z-10 py-16 sm:py-24">
-          <ContactSection isHome={false} />
+          <ContactSection isHome={false} showMap={false} />
         </div>
       </section>
 

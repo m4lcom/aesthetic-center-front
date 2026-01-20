@@ -13,7 +13,7 @@ const playfair = Playfair_Display({
 
 const WHATSAPP_NUMBER = "5493413304892";
 const WHATSAPP_MSG = encodeURIComponent(
-  "¡Hola Nur Estética! Vengo desde la web y me gustaría reservar un turno."
+  "¡Hola Nur Estética! Vengo desde la web y me gustaría reservar un turno.",
 );
 const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
@@ -25,8 +25,19 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
+    // Bloqueo de scroll cuando el menú está abierto
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.body.style.overflow = "unset";
+    };
+  }, [open]); // Escuchamos cambios en 'open'
 
   const isHome = pathname === "/";
   const isTransparent = isHome && !isScrolled && !open;
@@ -39,12 +50,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
+      className={`fixed top-0 w-full z-[100] transition-all duration-500 border-b ${
         isScrolled || open
           ? "bg-white/95 backdrop-blur-md border-neutral-100 py-2 shadow-sm"
           : isTransparent
-          ? "bg-transparent border-transparent py-6"
-          : "bg-white border-neutral-100 py-2"
+            ? "bg-transparent border-transparent py-6"
+            : "bg-white border-neutral-100 py-2"
       }`}
     >
       <nav
@@ -55,24 +66,16 @@ export default function Navbar() {
           {/* LOGO */}
           <Link
             href="/"
-            className="group relative z-50 flex items-center gap-1"
+            className="group relative z-[110] flex items-center gap-1"
             onClick={() => setOpen(false)}
           >
             <span
-              className={`${
-                playfair.className
-              } text-2xl transition-colors duration-500 ${
-                isTransparent ? "text-white" : "text-neutral-900"
-              }`}
+              className={`${playfair.className} text-2xl transition-colors duration-500 ${isTransparent ? "text-white" : "text-neutral-900"}`}
             >
               <span className="font-light tracking-[0.2em] uppercase">Nur</span>
             </span>
             <span
-              className={`${
-                playfair.className
-              } text-2xl font-bold transition-colors duration-500 ${
-                isTransparent ? "text-white" : "text-rose-500"
-              }`}
+              className={`${playfair.className} text-2xl font-bold transition-colors duration-500 ${isTransparent ? "text-white" : "text-rose-500"}`}
             >
               Estética
             </span>
@@ -84,65 +87,48 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 relative group ${
-                  pathname === link.href
-                    ? "text-rose-500"
-                    : isTransparent
-                    ? "text-white/90 hover:text-white"
-                    : "text-neutral-600 hover:text-rose-500"
-                }`}
+                className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 relative group ${pathname === link.href ? "text-rose-500" : isTransparent ? "text-white/90 hover:text-white" : "text-neutral-600 hover:text-rose-500"}`}
               >
                 {link.name}
                 <span
-                  className={`absolute -bottom-2 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${
-                    isTransparent ? "bg-white" : "bg-rose-400"
-                  } ${pathname === link.href ? "w-full" : ""}`}
+                  className={`absolute -bottom-2 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${isTransparent ? "bg-white" : "bg-rose-400"} ${pathname === link.href ? "w-full" : ""}`}
                 />
               </Link>
             ))}
-
             <Button
               href={whatsappUrl}
               variant="primary"
               target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Reservar turno por WhatsApp"
-              className={`rounded-full px-8 py-3 text-[11px] font-bold tracking-widest uppercase shadow-lg transition-all duration-500 transform hover:scale-105 border-none ${
-                isTransparent
-                  ? "bg-white !text-neutral-900 hover:bg-neutral-100 shadow-none"
-                  : "bg-rose-500 text-white hover:bg-rose-600 shadow-rose-200/50"
-              }`}
+              className={`rounded-full px-8 py-3 text-[11px] font-bold tracking-widest uppercase transition-all duration-500 ${isTransparent ? "bg-white !text-neutral-900" : "bg-rose-500 text-white"}`}
             >
               Reservar Turno
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Aumentamos Z-INDEX para que siempre esté arriba */}
           <button
-            className="md:hidden p-2 z-50 focus:outline-none"
+            className="md:hidden p-2 z-[110] focus:outline-none relative"
             onClick={() => setOpen(!open)}
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
           >
             {open ? (
-              <XMarkIcon className="h-8 w-8 text-neutral-900 transition-transform duration-300 rotate-90" />
+              <XMarkIcon className="h-8 w-8 text-neutral-900 transition-transform duration-300" />
             ) : (
               <Bars3Icon
-                className={`h-8 w-8 transition-colors duration-500 ${
-                  isTransparent ? "text-white" : "text-neutral-900"
-                }`}
+                className={`h-8 w-8 transition-colors duration-500 ${isTransparent ? "text-white" : "text-neutral-900"}`}
               />
             )}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Mejorado con transform para asegurar la visibilidad */}
       <div
-        className={`fixed inset-0 bg-white/98 backdrop-blur-xl transition-all duration-500 ease-in-out ${
+        className={`fixed inset-0 bg-white transition-all duration-500 ease-in-out md:hidden z-[100] flex flex-col items-center justify-center gap-10 ${
           open
-            ? "opacity-100 visible"
-            : "opacity-0 invisible pointer-events-none"
-        } md:hidden z-40 flex flex-col items-center justify-center gap-10`}
+            ? "translate-y-0 opacity-100 visible"
+            : "-translate-y-full opacity-0 invisible"
+        }`}
       >
         <div className="flex flex-col items-center gap-8">
           {navLinks.map((link) => (
@@ -156,16 +142,13 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-
         <div className="w-16 h-[1px] bg-neutral-200" />
-
         <Button
           href={whatsappUrl}
           variant="primary"
           target="_blank"
-          rel="noopener noreferrer"
           onClick={() => setOpen(false)}
-          className="rounded-full px-12 py-4 shadow-xl uppercase tracking-widest text-xs font-bold bg-rose-500 text-white hover:bg-rose-600 transition-colors border-none"
+          className="rounded-full px-12 py-4 bg-rose-500 text-white font-bold uppercase tracking-widest text-xs"
         >
           Reservar Turno
         </Button>
