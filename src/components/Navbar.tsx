@@ -122,36 +122,52 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay - Mejorado con transform para asegurar la visibilidad */}
+      {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-white transition-all duration-500 ease-in-out md:hidden z-[100] flex flex-col items-center justify-center gap-10 ${
+        className={`fixed inset-0 bg-white transition-all duration-300 ease-in-out md:hidden z-[100] ${
           open
             ? "translate-y-0 opacity-100 visible"
             : "-translate-y-full opacity-0 invisible"
         }`}
       >
-        <div className="flex flex-col items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
+        {/* Contenedor con scroll por si la pantalla es muy chica */}
+        <div className="flex flex-col h-full overflow-y-auto px-6 pt-24 pb-12">
+          <div className="flex flex-col items-center justify-center flex-1 gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={`${playfair.className} text-4xl text-neutral-900 hover:text-rose-500 transition-colors py-2`}
+              >
+                {link.name}
+              </Link>
+            ))}
+
+            <div className="w-16 h-[1px] bg-neutral-200 my-4" />
+
+            <Button
+              href={whatsappUrl}
+              variant="primary"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className={`${playfair.className} text-4xl text-neutral-900 hover:text-rose-500 transition-colors`}
+              className="w-full max-w-xs rounded-full py-5 shadow-xl uppercase tracking-widest text-xs font-bold bg-rose-500 text-white border-none"
             >
-              {link.name}
-            </Link>
-          ))}
+              Reservar Turno
+            </Button>
+          </div>
+
+          {/* Info extra al final del menú para rellenar */}
+          <div className="mt-auto text-center space-y-2">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 font-bold">
+              Rosario, Argentina
+            </p>
+            <p className="text-xs text-neutral-500 font-light">
+              Castellanos 1556
+            </p>
+          </div>
         </div>
-        <div className="w-16 h-[1px] bg-neutral-200" />
-        <Button
-          href={whatsappUrl}
-          variant="primary"
-          target="_blank"
-          onClick={() => setOpen(false)}
-          className="rounded-full px-12 py-4 bg-rose-500 text-white font-bold uppercase tracking-widest text-xs"
-        >
-          Reservar Turno
-        </Button>
       </div>
     </header>
   );
