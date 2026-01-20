@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Playfair_Display } from "next/font/google";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion"; // Import motion from framer-motion
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -129,43 +130,49 @@ export default function Navbar() {
             ? "translate-y-0 opacity-100 visible"
             : "-translate-y-full opacity-0 invisible"
         }`}
+        style={{ height: "100vh", width: "100vw" }} // Forzamos medidas por estilo
       >
-        {/* Contenedor con scroll por si la pantalla es muy chica */}
-        <div className="flex flex-col h-full overflow-y-auto px-6 pt-24 pb-12">
-          <div className="flex flex-col items-center justify-center flex-1 gap-8">
-            {navLinks.map((link) => (
-              <Link
+        <div className="flex flex-col h-full w-full bg-white px-8 pt-28 pb-10">
+          {/* Links de Navegación con espacio entre ellos */}
+          <nav className="flex flex-col gap-6">
+            {navLinks.map((link, index) => (
+              <motion.div
                 key={link.name}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className={`${playfair.className} text-4xl text-neutral-900 hover:text-rose-500 transition-colors py-2`}
+                initial={false}
+                animate={open ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
+                transition={{ delay: index * 0.1 }}
               >
-                {link.name}
-              </Link>
+                <Link
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className={`${playfair.className} text-5xl text-neutral-900 active:text-rose-500`}
+                >
+                  {link.name}
+                </Link>
+              </motion.div>
             ))}
+          </nav>
 
-            <div className="w-16 h-[1px] bg-neutral-200 my-4" />
+          <div className="my-10 w-12 h-[2px] bg-rose-200" />
 
+          {/* Botón y contacto en la parte baja */}
+          <div className="space-y-8">
             <Button
               href={whatsappUrl}
               variant="primary"
               target="_blank"
-              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="w-full max-w-xs rounded-full py-5 shadow-xl uppercase tracking-widest text-xs font-bold bg-rose-500 text-white border-none"
+              className="w-full rounded-full py-5 text-sm font-bold bg-rose-500 text-white shadow-xl shadow-rose-200"
             >
-              Reservar Turno
+              RESERVAR TURNO
             </Button>
-          </div>
 
-          {/* Info extra al final del menú para rellenar */}
-          <div className="mt-auto text-center space-y-2">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 font-bold">
-              Rosario, Argentina
-            </p>
-            <p className="text-xs text-neutral-500 font-light">
-              Castellanos 1556
-            </p>
+            <div className="space-y-1">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 font-bold">
+                Rosario, Santa Fe
+              </p>
+              <p className="text-neutral-600 font-light">Castellanos 1556</p>
+            </div>
           </div>
         </div>
       </div>
