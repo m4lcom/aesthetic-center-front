@@ -1,20 +1,17 @@
-// app/layout.tsx
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/src/components/Navbar";
 import Footer from "@/src/components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import { Metadata } from "next";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-sans",
-  display: "swap",
+  display: "swap", // Fundamental para evitar FOUT/FOIT
 });
 
-// Tipado de metadatos para mejor DX
 export const metadata: Metadata = {
   metadataBase: new URL("https://nurestetica.com.ar"),
   title: {
@@ -22,53 +19,29 @@ export const metadata: Metadata = {
     template: "%s | Nur Estética",
   },
   description:
-    "Centro de estética integral en Rosario. Especialistas en depilación láser, armonización facial y tratamientos corporales personalizados. Tecnología de vanguardia.",
+    "Centro de estética integral en Rosario. Especialistas en depilación láser, armonización facial y tratamientos corporales personalizados.",
   keywords: [
     "Nur Estética",
     "Estética Rosario",
     "Depilación Láser Rosario",
     "Armonización Facial",
     "Tratamientos Corporales",
-    "Limpieza Facial Profunda",
-    "Medicina Estética",
   ],
   verification: {
     google: "pEhSOETSfpHseZzWOQfxpxVEaD_g2sdW37ca9heF37w",
   },
   openGraph: {
     title: "Nur Estética Rosario",
-    description:
-      "Resaltamos tu belleza natural con tecnología de vanguardia y atención personalizada.",
+    description: "Resaltamos tu belleza natural con tecnología de vanguardia.",
     url: "https://nurestetica.com.ar",
     siteName: "Nur Estética",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Nur Estética - Centro de Belleza en Rosario",
-      },
-    ],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     locale: "es_AR",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Nur Estética Rosario",
-    description:
-      "Tratamientos estéticos avanzados con tecnología de vanguardia.",
-    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 };
 
@@ -77,7 +50,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Obtenemos el ID de Analytics desde las variables de entorno
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   const jsonLd = {
@@ -85,8 +57,7 @@ export default function RootLayout({
     "@type": "HealthAndBeautyBusiness",
     name: "Nur Estética",
     image: "https://nurestetica.com.ar/og-image.jpg",
-    description:
-      "Centro de estética integral en Rosario especializado en tratamientos faciales y corporales.",
+    description: "Centro de estética integral en Rosario.",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Rosario",
@@ -96,27 +67,30 @@ export default function RootLayout({
     url: "https://nurestetica.com.ar",
     telephone: "+5493413304892",
     priceRange: "$$",
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "09:00",
-        closes: "20:00",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Saturday"],
-        opens: "09:00",
-        closes: "13:00",
-      },
-    ],
   };
 
   return (
     <html lang="es" className={`${montserrat.variable} scroll-smooth`}>
       <body className="flex min-h-screen flex-col font-sans antialiased text-neutral-900 bg-white">
-        {/* Solo renderizamos el componente si la variable de entorno existe */}
-        {gaId && <GoogleAnalytics gaId={gaId} />}
+        {/* ANALYTICS OPTIMIZADO: Carga diferida (lazyOnload) para no bloquear LCP */}
+        {gaId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="lazyOnload"
+            />
+            <Script id="google-analytics" strategy="lazyOnload">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}', {
+                  page_path: window.location.pathname,
+                });
+              `}
+            </Script>
+          </>
+        )}
 
         <Script
           id="json-ld"

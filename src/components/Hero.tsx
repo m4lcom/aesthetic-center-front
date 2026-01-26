@@ -4,25 +4,27 @@ import Image from "next/image";
 import Button from "@/src/components/Button";
 import { Playfair_Display } from "next/font/google";
 
-const playfair = Playfair_Display({ subsets: ["latin"], weight: "700" });
+// OPTIMIZACIÓN: display: "swap" elimina el bloqueo de renderizado del texto
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: "700",
+  display: "swap",
+});
 
 export default function Hero() {
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#1a0f0f]">
-      {/* CONTENEDOR DE IMAGEN */}
       <div className="absolute inset-0 z-0">
         <div className="relative h-full w-full">
           <Image
             src="/images/hero-bg-edit.jpg"
             alt="Interior de Nur Estética Rosario - Ambiente de estética avanzada"
             fill
-            priority // Esto es clave para el LCP
+            priority
             sizes="100vw"
             className="object-cover opacity-85 scale-x-[-1] saturate-[1.15] contrast-[1.05]"
           />
         </div>
-
-        {/* GRADIENTES */}
         <div
           className="absolute inset-0 bg-gradient-to-t from-[#1a0f0f] via-transparent to-transparent opacity-80"
           aria-hidden="true"
@@ -32,7 +34,6 @@ export default function Hero() {
 
       <div className="relative z-10 w-full max-w-7xl px-6 md:px-12 flex justify-start items-center h-full">
         <div className="max-w-4xl text-left space-y-8 mt-20">
-          {/* SPAN - Animación más ligera */}
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -41,7 +42,7 @@ export default function Hero() {
             Nur Estética Rosario
           </motion.span>
 
-          {/* H1 - OPTIMIZADO: Sin Framer Motion para evitar bloqueo de renderizado */}
+          {/* H1 sin bloqueo JS */}
           <h1
             className={`${playfair.className} text-5xl sm:text-7xl md:text-8xl text-white leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-1000`}
           >
@@ -52,7 +53,6 @@ export default function Hero() {
             única.
           </h1>
 
-          {/* PÁRRAFO */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -63,7 +63,6 @@ export default function Hero() {
             versión en un entorno de seguridad y confort.
           </motion.p>
 
-          {/* BOTONES */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,7 +76,6 @@ export default function Hero() {
             >
               Reservar Turno
             </Button>
-
             <Button
               variant="outline"
               href="/services"
