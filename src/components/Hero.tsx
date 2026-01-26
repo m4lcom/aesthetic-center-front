@@ -44,7 +44,7 @@ export default function Hero() {
 
           {/* H1 sin bloqueo JS */}
           <h1
-            className={`${playfair.className} text-5xl sm:text-7xl md:text-8xl text-white leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-1000`}
+            className={`${playfair.className} text-5xl sm:text-7xl md:text-8xl text-white leading-[1.1]`}
           >
             Tu belleza, <br />
             <span className="italic font-light text-rose-100/90">
