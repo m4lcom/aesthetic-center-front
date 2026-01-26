@@ -4,7 +4,6 @@ import Image from "next/image";
 import Button from "@/src/components/Button";
 import { Playfair_Display } from "next/font/google";
 
-// OPTIMIZACIÓN: display: "swap" elimina el bloqueo de renderizado del texto
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: "700",
@@ -14,6 +13,7 @@ const playfair = Playfair_Display({
 export default function Hero() {
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#1a0f0f]">
+      {/* 1. IMAGEN DE FONDO ESTÁTICA (Clave para LCP) */}
       <div className="absolute inset-0 z-0">
         <div className="relative h-full w-full">
           <Image
@@ -34,15 +34,12 @@ export default function Hero() {
 
       <div className="relative z-10 w-full max-w-7xl px-6 md:px-12 flex justify-start items-center h-full">
         <div className="max-w-4xl text-left space-y-8 mt-20">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="inline-block text-rose-200 font-bold tracking-[0.4em] uppercase text-[10px] sm:text-xs border-b border-rose-300/30 pb-2"
-          >
+          {/* 2. TEXTO SUPERIOR ESTÁTICO (Eliminamos motion para liberar el hilo principal) */}
+          <span className="inline-block text-rose-200 font-bold tracking-[0.4em] uppercase text-[10px] sm:text-xs border-b border-rose-300/30 pb-2">
             Nur Estética Rosario
-          </motion.span>
+          </span>
 
-          {/* H1 sin bloqueo JS */}
+          {/* 3. TÍTULO H1 INSTANTÁNEO (Sin bloqueos de animación) */}
           <h1
             className={`${playfair.className} text-5xl sm:text-7xl md:text-8xl text-white leading-[1.1] block`}
           >
@@ -53,10 +50,11 @@ export default function Hero() {
             única.
           </h1>
 
+          {/* 4. ANIMACIONES SÓLO EN ELEMENTOS SECUNDARIOS (Párrafo y Botones) */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
             className="text-lg md:text-xl text-neutral-100 font-light max-w-xl leading-relaxed"
           >
             Protocolos estéticos de vanguardia diseñados para resaltar tu mejor
@@ -66,7 +64,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
             className="flex flex-col sm:flex-row gap-5 pt-4"
           >
             <Button
