@@ -26,4 +26,18 @@
   .premium-map:hover {
     filter: grayscale(20%) invert(0%) contrast(100%);
   }
+  @keyframes slideUpFade {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-lcp {
+    animation: slideUpFade 0.8s ease-out forwards;
+  }
 }

@@ -17,7 +17,7 @@ const playfair = Playfair_Display({ subsets: ["latin"], weight: "700" });
 
 interface ContactSectionProps {
   isHome?: boolean;
-  showMap?: boolean; // Nueva prop para controlar la visibilidad del mapa
+  showMap?: boolean;
 }
 
 export default function ContactSection({
@@ -25,6 +25,8 @@ export default function ContactSection({
   showMap = true,
 }: ContactSectionProps) {
   const formRef = useRef<HTMLFormElement>(null);
+
+  // Ajuste para Next.js 15: el action ahora recibe (state, formData)
   const [state, formAction, isPending] = useActionState(sendEmail, null);
 
   useEffect(() => {
@@ -40,9 +42,11 @@ export default function ContactSection({
     >
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         <div
-          className={`grid grid-cols-1 ${showMap ? "lg:grid-cols-2" : "max-w-2xl mx-auto"} gap-16 items-start`}
+          className={`grid grid-cols-1 ${
+            showMap ? "lg:grid-cols-2" : "max-w-2xl mx-auto"
+          } gap-16 items-start`}
         >
-          {/* COLUMNA IZQUIERDA: Info + Mapa (Solo si showMap es true) */}
+          {/* COLUMNA IZQUIERDA: Info + Mapa */}
           {showMap && (
             <motion.div
               className="space-y-10"
@@ -67,10 +71,12 @@ export default function ContactSection({
 
               <div className="relative h-64 w-full rounded-3xl overflow-hidden border border-neutral-100 shadow-inner">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.4411477142714!2d-60.669145623455985!3d-32.93933587122119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7ab4784a0d8d7%3A0x6295550a255018a1!2sCastellanos%201556%2C%20S2000%20Rosario%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1705600000000!5m2!1ses-419!2sar"
+                  title="Mapa de ubicación de Nur Estética en Rosario" // Requisito de Accesibilidad
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.165842813583!2d-60.6613!3d-32.9461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDU2JzQ2LjAiUyA2MMKwMzknNDAuNyJX!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar"
                   className="absolute inset-0 w-full h-full border-0 premium-map"
                   allowFullScreen
                   loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
               </div>
 
@@ -97,14 +103,15 @@ export default function ContactSection({
 
           {/* COLUMNA DERECHA: Formulario */}
           <motion.div
-            className={`bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-2xl shadow-rose-900/5 border border-neutral-100 relative ${!showMap ? "w-full" : ""}`}
+            className={`bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-2xl shadow-rose-900/5 border border-neutral-100 relative ${
+              !showMap ? "w-full" : ""
+            }`}
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            {/* ... resto del formulario igual al que ya tenías ... */}
             <AnimatePresence mode="wait">
               {state?.success ? (
                 <motion.div
@@ -123,8 +130,9 @@ export default function ContactSection({
                     Sonia se pondrá en contacto con vos pronto.
                   </p>
                   <button
+                    type="button"
                     onClick={() => window.location.reload()}
-                    className="text-rose-500 font-bold text-[10px] uppercase tracking-widest border-b border-rose-200"
+                    className="text-rose-500 font-bold text-[10px] uppercase tracking-widest border-b border-rose-200 hover:border-rose-500 transition-all"
                   >
                     Enviar otro
                   </button>
@@ -136,13 +144,16 @@ export default function ContactSection({
                   ref={formRef}
                   className="space-y-5"
                 >
-                  {/* Inputs de nombre, email, select y mensaje aquí */}
                   <div className="space-y-4">
                     <div className="group">
-                      <label className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold ml-1">
+                      <label
+                        htmlFor="name"
+                        className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold ml-1 transition-colors group-focus-within:text-rose-400"
+                      >
                         Nombre Completo
                       </label>
                       <input
+                        id="name"
                         name="name"
                         type="text"
                         required
@@ -150,11 +161,16 @@ export default function ContactSection({
                         placeholder="Ej: Maria García"
                       />
                     </div>
+
                     <div className="group">
-                      <label className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold ml-1">
+                      <label
+                        htmlFor="email"
+                        className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold ml-1 transition-colors group-focus-within:text-rose-400"
+                      >
                         Email de contacto
                       </label>
                       <input
+                        id="email"
                         name="email"
                         type="email"
                         required
@@ -162,29 +178,42 @@ export default function ContactSection({
                         placeholder="tu@email.com"
                       />
                     </div>
+
                     <div className="group">
-                      <label className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold ml-1">
+                      <label
+                        htmlFor="service-select"
+                        className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold ml-1 transition-colors group-focus-within:text-rose-400"
+                      >
                         Tratamiento de interés
                       </label>
-                      <select
-                        name="service"
-                        required
-                        className="w-full px-5 py-4 rounded-xl border border-neutral-100 bg-neutral-50/50 focus:bg-white focus:border-rose-300 transition-all outline-none appearance-none cursor-pointer"
-                      >
-                        <option value="" disabled selected>
-                          Seleccioná un servicio...
-                        </option>
-                        <option value="facial">Armonización Facial</option>
-                        <option value="laser">Depilación Láser</option>
-                        <option value="corporal">Modelado Corporal</option>
-                        <option value="otro">Consulta General</option>
-                      </select>
+                      <div className="relative">
+                        <select
+                          id="service-select" // Vinculado con el label arriba
+                          name="service"
+                          required
+                          className="w-full px-5 py-4 rounded-xl border border-neutral-100 bg-neutral-50/50 focus:bg-white focus:border-rose-300 transition-all outline-none appearance-none cursor-pointer"
+                          defaultValue=""
+                        >
+                          <option value="" disabled>
+                            Seleccioná un servicio...
+                          </option>
+                          <option value="facial">Armonización Facial</option>
+                          <option value="laser">Depilación Láser</option>
+                          <option value="corporal">Modelado Corporal</option>
+                          <option value="otro">Consulta General</option>
+                        </select>
+                      </div>
                     </div>
+
                     <div className="group">
-                      <label className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold ml-1">
+                      <label
+                        htmlFor="message"
+                        className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold ml-1 transition-colors group-focus-within:text-rose-400"
+                      >
                         Tu mensaje
                       </label>
                       <textarea
+                        id="message"
                         name="message"
                         rows={3}
                         required
@@ -197,7 +226,7 @@ export default function ContactSection({
                   <button
                     type="submit"
                     disabled={isPending}
-                    className="w-full py-5 rounded-xl font-bold uppercase tracking-[0.2em] text-[10px] bg-neutral-900 text-white hover:bg-rose-500 transition-all flex justify-center items-center gap-3"
+                    className="w-full py-5 rounded-xl font-bold uppercase tracking-[0.2em] text-[10px] bg-neutral-900 text-white hover:bg-rose-500 transition-all shadow-lg hover:shadow-rose-500/20 flex justify-center items-center gap-3 disabled:bg-neutral-300 disabled:cursor-not-allowed"
                   >
                     {isPending ? (
                       <Loader2 className="animate-spin" size={16} />
