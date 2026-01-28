@@ -16,7 +16,7 @@ const allServices = [
     description:
       "Recuperá la frescura y juventud de tu rostro con protocolos de bioestimulación y renovación celular profunda.",
     details: ["Bioestimulación", "Efecto Glow", "Hilos Tensores"],
-    image: "/images/tratamientos-faciales.webp",
+    image: "/images/tratamientos-faciales-edit.jpg",
   },
   {
     slug: "capilares",
